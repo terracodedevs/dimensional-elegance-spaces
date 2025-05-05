@@ -82,10 +82,6 @@ export function SimpleRoom(props: any) {
           <meshStandardMaterial color="#D4AF37" />
         </mesh>
       </group>
-      
-      {/* Light */}
-      <pointLight position={[0, 3, 0]} intensity={0.8} castShadow />
-      <ambientLight intensity={0.2} />
     </group>
   );
 }
