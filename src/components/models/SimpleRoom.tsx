@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export function SimpleRoom(props: any) {
+export function SimpleRoom(props: { position?: [number, number, number], scale?: number }) {
   const groupRef = useRef<THREE.Group>(null!);
   
   useFrame((state) => {
@@ -22,7 +22,7 @@ export function SimpleRoom(props: any) {
   });
 
   return (
-    <group ref={groupRef} {...props}>
+    <group ref={groupRef} position={props.position} scale={props.scale}>
       {/* Floor */}
       <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[8, 8]} />
