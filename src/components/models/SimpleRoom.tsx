@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export function SimpleRoom(props) {
-  const groupRef = useRef();
+export function SimpleRoom(props: any) {
+  const groupRef = useRef<THREE.Group>(null!);
   
   useFrame((state) => {
     if (groupRef.current) {
