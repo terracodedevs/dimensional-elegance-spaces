@@ -1,5 +1,5 @@
 
-import { Cube } from "lucide-react";
+import { Box } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const products = [
@@ -94,7 +94,7 @@ const TrendingProducts = () => {
               />
               {product.has3DModel && (
                 <div className="absolute top-3 right-3 bg-white rounded-full p-2">
-                  <Cube className="h-4 w-4 text-accent-gold" />
+                  <Box className="h-4 w-4 text-accent-gold" />
                 </div>
               )}
             </div>

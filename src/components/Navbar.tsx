@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, Search, User, Cube } from "lucide-react";
+import { Menu, Search, User, Box } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +25,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         <div className="flex items-center">
           <div className="flex items-center">
-            <Cube className="h-7 w-7 text-accent-gold mr-2 animate-subtle-rotate" />
+            <Box className="h-7 w-7 text-accent-gold mr-2 animate-subtle-rotate" />
             <span className="font-playfair text-xl font-bold">Luxe Spaces</span>
           </div>
         </div>
@@ -58,7 +57,7 @@ const Navbar = () => {
             <User className="h-5 w-5" />
           </button>
           <div className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
-            <Cube className="h-4 w-4 mr-1 text-accent-gold" />
+            <Box className="h-4 w-4 mr-1 text-accent-gold" />
             <span className="text-sm font-medium">3</span>
           </div>
         </div>
@@ -100,7 +99,7 @@ const Navbar = () => {
                 <User className="h-5 w-5" />
               </button>
               <div className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
-                <Cube className="h-4 w-4 mr-1 text-accent-gold" />
+                <Box className="h-4 w-4 mr-1 text-accent-gold" />
                 <span className="text-sm font-medium">3</span>
               </div>
             </div>

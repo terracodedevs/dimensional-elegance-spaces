@@ -1,6 +1,6 @@
 
 import { useState, useRef } from "react";
-import { ArrowLeft, ArrowRight, Cube } from "lucide-react";
+import { ArrowLeft, ArrowRight, Box } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -109,7 +109,7 @@ const FeaturedCollections = () => {
                     className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                   />
                   <div className="absolute top-3 right-3 bg-white rounded-full p-2">
-                    <Cube className="h-4 w-4 text-accent-gold" />
+                    <Box className="h-4 w-4 text-accent-gold" />
                   </div>
                 </div>
                 <div className="p-5">

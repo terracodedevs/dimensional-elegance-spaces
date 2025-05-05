@@ -1,5 +1,5 @@
 
-import { Cube, Instagram, Facebook, Linkedin, Mail } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Mail, Box } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center mb-4">
-              <Cube className="h-6 w-6 text-accent-gold mr-2" />
+              <Box className="h-6 w-6 text-accent-gold mr-2" />
               <span className="font-playfair text-xl font-semibold">Luxe Spaces</span>
             </div>
             <p className="text-white/70 mb-6">
