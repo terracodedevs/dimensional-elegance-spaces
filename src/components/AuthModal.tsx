@@ -25,7 +25,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             <RegisterForm onLoginClick={() => setActiveTab("login")} />
           </TabsContent>
           <TabsContent value="login">
-            <LoginForm onRegisterClick={() => setActiveTab("register")} />
+            <LoginForm onRegisterClick={() => setActiveTab("register")} onClose={onClose} />
           </TabsContent>
         </Tabs>
       </DialogContent>

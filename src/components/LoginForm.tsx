@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
   onRegisterClick: () => void;
+  onClose?: () => void;
 }
 
 const formSchema = z.object({
@@ -19,9 +21,10 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const LoginForm = ({ onRegisterClick }: LoginFormProps) => {
+const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -36,10 +39,23 @@ const LoginForm = ({ onRegisterClick }: LoginFormProps) => {
     try {
       // Here you would typically call an API to authenticate the user
       console.log("Login values:", values);
-      toast({
-        title: "Login successful!",
-        description: "Welcome back to Luxe Spaces."
-      });
+      
+      // For demo purposes, let's just accept any credentials
+      setTimeout(() => {
+        toast({
+          title: "Login successful!",
+          description: "Welcome back to Luxe Spaces."
+        });
+        
+        // Close the modal if the callback is provided
+        if (onClose) {
+          onClose();
+        }
+        
+        // Navigate to the cart page
+        navigate("/cart");
+      }, 1000);
+      
     } catch (error) {
       toast({
         title: "Login failed",
