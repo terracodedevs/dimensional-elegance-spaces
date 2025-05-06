@@ -37,9 +37,9 @@ const Cart = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="container mx-auto py-24">
+      <div className="container mx-auto py-24 flex-grow">
         <div className="mb-6">
           <Button 
             variant="ghost" 
@@ -76,9 +76,12 @@ const Cart = () => {
             </div>
           </div>
         )}
+        
+        {/* Added extra space to push footer down */}
+        <div className="mt-60"></div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
