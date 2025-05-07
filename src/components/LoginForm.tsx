@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import RoleSelectionDialog from "./RoleSelectionDialog";
 
 interface LoginFormProps {
   onRegisterClick: () => void;
@@ -23,8 +23,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showRoleDialog, setShowRoleDialog] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -47,13 +47,13 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
           description: "Welcome back to Luxe Spaces."
         });
         
-        // Close the modal if the callback is provided
+        // Close the authentication modal if the callback is provided
         if (onClose) {
           onClose();
         }
         
-        // Navigate to the cart page
-        navigate("/cart");
+        // Show role selection dialog instead of navigating directly to cart
+        setShowRoleDialog(true);
       }, 1000);
       
     } catch (error) {
@@ -65,6 +65,10 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleRoleDialogClose = () => {
+    setShowRoleDialog(false);
   };
 
   return (
@@ -122,6 +126,9 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
           </button>
         </p>
       </div>
+
+      {/* Role Selection Dialog */}
+      <RoleSelectionDialog isOpen={showRoleDialog} onClose={handleRoleDialogClose} />
     </div>
   );
 };
