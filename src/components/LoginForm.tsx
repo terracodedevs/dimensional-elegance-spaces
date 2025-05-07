@@ -52,7 +52,7 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
           onClose();
         }
         
-        // Show role selection dialog instead of navigating directly to cart
+        // Show role selection dialog
         setShowRoleDialog(true);
       }, 1000);
       
@@ -68,6 +68,7 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
   };
 
   const handleRoleDialogClose = () => {
+    // Only close the dialog when explicitly called by the continue button
     setShowRoleDialog(false);
   };
 
@@ -128,7 +129,10 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
       </div>
 
       {/* Role Selection Dialog */}
-      <RoleSelectionDialog isOpen={showRoleDialog} onClose={handleRoleDialogClose} />
+      <RoleSelectionDialog 
+        isOpen={showRoleDialog} 
+        onClose={handleRoleDialogClose}
+      />
     </div>
   );
 };
