@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import VisualizerShowcase from "@/components/VisualizerShowcase";
-import FeaturedCollections from "@/components/FeaturedCollections";
+import FeaturedFurniture from "@/components/FeaturedFurniture";
 import TrendingProducts from "@/components/TrendingProducts";
 import CustomerGallery from "@/components/CustomerGallery";
 import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ const Index = () => {
     <div className="bg-warm-cream min-h-screen">
       <Navbar />
       <Hero />
-      <FeaturedCollections />
+      <FeaturedFurniture />
       <VisualizerShowcase />
       <TrendingProducts />
       <CustomerGallery />

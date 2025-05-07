@@ -1,65 +1,86 @@
 
-import { Box } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { FurnitureItem } from "@/types/furniture";
 
 const products = [
   {
     id: "prod_1",
     name: "Helsinki Lounge Chair",
-    price: "$599",
+    price: 599,
+    description: "Designer lounge chair by Mia Nordström",
     designer: "Mia Nordström",
     image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80",
-    has3DModel: true,
+    category: "Living Room",
+    quantity: 1,
     size: "large",
   },
   {
     id: "prod_2",
     name: "Cove Sofa",
-    price: "$1,299",
+    price: 1299,
+    description: "Luxurious sofa design by Eric Silva",
     designer: "Eric Silva",
     image: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=800&q=80",
-    has3DModel: true,
+    category: "Living Room",
+    quantity: 1,
     size: "small",
   },
   {
     id: "prod_3",
     name: "Arris Coffee Table",
-    price: "$499",
+    price: 499,
+    description: "Modern coffee table by Jenna Wu",
     designer: "Jenna Wu",
     image: "https://images.unsplash.com/photo-1616464598261-c83228e7ba5e?auto=format&fit=crop&w=800&q=80",
-    has3DModel: true,
+    category: "Living Room",
+    quantity: 1,
     size: "medium",
   },
   {
     id: "prod_4",
     name: "Nero Floor Lamp",
-    price: "$349",
+    price: 349,
+    description: "Sleek floor lamp by Akio Tanaka",
     designer: "Akio Tanaka",
     image: "https://images.unsplash.com/photo-1543198126-a8ad8e47fb22?auto=format&fit=crop&w=800&q=80",
-    has3DModel: false,
+    category: "Lighting",
+    quantity: 1,
     size: "small",
   },
   {
     id: "prod_5",
     name: "Meridian Bookshelf",
-    price: "$899",
+    price: 899,
+    description: "Spacious bookshelf by Lucia Fernandez",
     designer: "Lucia Fernandez",
     image: "https://images.unsplash.com/photo-1588279102080-a8797324333a?auto=format&fit=crop&w=800&q=80",
-    has3DModel: true,
+    category: "Storage",
+    quantity: 1,
     size: "medium",
   },
   {
     id: "prod_6",
     name: "Kinetic Pendant Light",
-    price: "$249",
+    price: 249,
+    description: "Modern pendant light by Olivia Chen",
     designer: "Olivia Chen",
     image: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80",
-    has3DModel: false,
+    category: "Lighting",
+    quantity: 1,
     size: "small",
   },
 ];
 
 const TrendingProducts = () => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: FurnitureItem) => {
+    addToCart(product);
+  };
+
   return (
     <div id="inspiration" className="py-20 container mx-auto">
       <div className="text-center mb-16 px-4">
@@ -92,18 +113,23 @@ const TrendingProducts = () => {
                 alt={product.name} 
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              {product.has3DModel && (
-                <div className="absolute top-3 right-3 bg-white rounded-full p-2">
-                  <Box className="h-4 w-4 text-accent-gold" />
-                </div>
-              )}
             </div>
             <div className="p-4 bg-white">
               <div className="flex justify-between items-start mb-1">
                 <h3 className="font-playfair font-medium text-lg">{product.name}</h3>
-                <span className="font-medium">{product.price}</span>
+                <span className="font-medium">${product.price}</span>
               </div>
               <p className="text-deep-indigo/70 text-sm">By {product.designer}</p>
+              <div className="mt-3">
+                <Button 
+                  onClick={() => handleAddToCart(product)}
+                  className="w-full flex justify-center items-center"
+                  size="sm"
+                >
+                  <ShoppingCart className="h-4 w-4 mr-1" />
+                  Add to Cart
+                </Button>
+              </div>
             </div>
           </div>
         ))}

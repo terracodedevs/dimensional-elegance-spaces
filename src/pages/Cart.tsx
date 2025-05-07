@@ -1,36 +1,16 @@
 
-import { useState } from "react";
-import { mockCartItems } from "@/data/mockFurniture";
-import CartItem from "@/components/CartItem";
-import OrderSummary from "@/components/OrderSummary";
-import { FurnitureItem } from "@/types/furniture";
-import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CartItem from "@/components/CartItem";
+import OrderSummary from "@/components/OrderSummary";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<FurnitureItem[]>(mockCartItems);
-  const { toast } = useToast();
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
-
-  const handleUpdateQuantity = (id: string, quantity: number) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
-  };
-
-  const handleRemoveItem = (id: string) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-    toast({
-      title: "Item removed",
-      description: "The item has been removed from your cart."
-    });
-  };
 
   const handleGoBack = () => {
     navigate(-1);
@@ -65,8 +45,8 @@ const Cart = () => {
                   <CartItem
                     key={item.id}
                     item={item}
-                    onUpdateQuantity={handleUpdateQuantity}
-                    onRemoveItem={handleRemoveItem}
+                    onUpdateQuantity={updateQuantity}
+                    onRemoveItem={removeFromCart}
                   />
                 ))}
               </div>

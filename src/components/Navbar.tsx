@@ -1,13 +1,16 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, Search, User, Box } from "lucide-react";
+import { Menu, Search, User, ShoppingCart } from "lucide-react";
 import AuthModal from "./AuthModal";
+import { useCart } from "@/contexts/CartContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,15 +31,15 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex items-center justify-between px-4">
           <div className="flex items-center">
-            <div className="flex items-center">
-              <Box className="h-7 w-7 text-accent-gold mr-2 animate-subtle-rotate" />
+            <Link to="/" className="flex items-center">
+              <ShoppingCart className="h-7 w-7 text-accent-gold mr-2 animate-subtle-rotate" />
               <span className="font-playfair text-xl font-bold">Luxe Spaces</span>
-            </div>
+            </Link>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
             {[
-              { name: "Home", href: "#" },
+              { name: "Home", href: "/" },
               { name: "Collections", href: "#collections" },
               { name: "3D Visualizer", href: "#visualizer" },
               { name: "Custom Design", href: "#custom-design" },
@@ -60,10 +63,10 @@ const Navbar = () => {
             <button onClick={() => setIsAuthModalOpen(true)}>
               <User className="h-5 w-5" />
             </button>
-            <div className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
-              <Box className="h-4 w-4 mr-1 text-accent-gold" />
-              <span className="text-sm font-medium">3</span>
-            </div>
+            <Link to="/cart" className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
+              <ShoppingCart className="h-4 w-4 mr-1 text-accent-gold" />
+              <span className="text-sm font-medium">{cartCount}</span>
+            </Link>
           </div>
           
           <button 
@@ -79,7 +82,7 @@ const Navbar = () => {
           <div className="md:hidden blur-backdrop">
             <div className="px-4 pt-2 pb-4 space-y-3">
               {[
-                { name: "Home", href: "#" },
+                { name: "Home", href: "/" },
                 { name: "Collections", href: "#collections" },
                 { name: "3D Visualizer", href: "#visualizer" },
                 { name: "Custom Design", href: "#custom-design" },
@@ -105,10 +108,10 @@ const Navbar = () => {
                 }}>
                   <User className="h-5 w-5" />
                 </button>
-                <div className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
-                  <Box className="h-4 w-4 mr-1 text-accent-gold" />
-                  <span className="text-sm font-medium">3</span>
-                </div>
+                <Link to="/cart" className="flex items-center bg-deep-indigo bg-opacity-10 rounded-full px-3 py-1">
+                  <ShoppingCart className="h-4 w-4 mr-1 text-accent-gold" />
+                  <span className="text-sm font-medium">{cartCount}</span>
+                </Link>
               </div>
             </div>
           </div>
