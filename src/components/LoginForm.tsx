@@ -54,6 +54,7 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
         
         // Show role selection dialog
         setShowRoleDialog(true);
+        setIsLoading(false);
       }, 1000);
       
     } catch (error) {
@@ -62,14 +63,17 @@ const LoginForm = ({ onRegisterClick, onClose }: LoginFormProps) => {
         description: "Invalid email or password. Please try again.",
         variant: "destructive"
       });
-    } finally {
       setIsLoading(false);
     }
   };
 
   const handleRoleDialogClose = () => {
-    // Only close the dialog when explicitly called by the continue button
     setShowRoleDialog(false);
+    
+    // Now close the auth modal if provided
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (

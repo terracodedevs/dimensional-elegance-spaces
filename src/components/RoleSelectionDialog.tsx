@@ -22,20 +22,18 @@ const RoleSelectionDialog = ({ isOpen, onClose }: RoleSelectionDialogProps) => {
     } else {
       navigate("/cart");
     }
-    // We move the onClose after navigation
+    // We move the onClose after navigation with a longer delay
     setTimeout(() => {
       onClose();
-    }, 100);
+    }, 300);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
-      // Only allow closing dialog through the continue button
+      // Prevent dialog from closing when clicking outside
       if (!open) {
-        // Don't close the dialog when clicking outside
         return;
       }
-      onClose();
     }}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle className="text-center font-playfair text-xl font-medium">Select your role</DialogTitle>
